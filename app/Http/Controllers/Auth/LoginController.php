@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Mockery\Container;
 
 class LoginController extends Controller
 {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/tweets';
 
     /**
      * Create a new controller instance.
