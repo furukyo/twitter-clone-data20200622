@@ -64,7 +64,7 @@ class Follower extends Model
     }
 
         // 一覧画面
-        public function getTimeLines(Int $user_id, Array $follow_ids)
+        public function getTimeLine(Int $user_id, Array $follow_ids)
         {
             // 自身とフォローしているユーザIDを結合する
             $follow_ids[] = $user_id;
@@ -73,5 +73,15 @@ class Follower extends Model
         public function getEditTweet(Int $user_id, Int $tweet_id)
         {
             return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
+        }
+
+        public function getFollowCount($user_id)
+        {
+            return $this->where('following_id', $user_id)->count();
+        }
+    
+        public function getFollowerCount($user_id)
+        {
+            return $this->where('followed_id', $user_id)->count();
         }
 }

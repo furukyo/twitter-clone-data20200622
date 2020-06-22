@@ -85,5 +85,10 @@ class Comment extends Model
 
         return;
     }
+
+    public function getComments(int $tweet_id)
+    {
+        return $this->where('id', $tweet_id)->orderBy('created_at', 'DESC')->paginate(50);
+    }
 }
 

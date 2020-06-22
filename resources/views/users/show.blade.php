@@ -20,14 +20,14 @@
                                     <a href="{{ url('users/' .$user->id .'/edit') }}" class="btn btn-primary">プロフィールを編集する</a>
                                 @else
                                     @if ($is_following)
-                                        <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST" class="mb-2">
+                                        <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
 
                                             <button type="submit" class="btn btn-danger">フォロー解除</button>
                                         </form>
                                     @else
-                                        <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST" class="mb-2">
+                                        <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
 
                                             <button type="submit" class="btn btn-primary">フォローする</button>
@@ -92,32 +92,14 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <!-- ここから -->
                             <div class="mr-3 d-flex align-items-center">
-                                <a href="{{ url('tweets/' .$timeline->id) }}"><i class="far fa-comment fa-fw"></i></a>
+                                <a href="#"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->comments) }}</p>
                             </div>
                             <div class="d-flex align-items-center">
-                                @if (!in_array(Auth::user()->id, array_column($timeline->favorites->toArray(), 'user_id'), TRUE))
-                                    <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
-                                        @csrf
-
-                                        <input type="hidden" name="tweet_id" value="{{ $timeline->id }}">
-                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                    </form>
-                                @else
-                                    <form method="POST"action="{{ url('favorites/' .array_column($timeline->favorites->toArray(), 'id', 'user_id')[Auth::user()->id]) }}" class="mb-0">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                                    </form>
-                                @endif
+                                <a href="#"><i class="far fa-comment fa-fw"></i></a>
                                 <p class="mb-0 text-secondary">{{ count($timeline->favorites) }}</p>
                             </div>
-                            <!-- ここまで -->
-
                         </div>
                     </div>
                 </div>

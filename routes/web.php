@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // ユーザ関連
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+    //Route::resource('users', 'UsersController');
 
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
@@ -56,33 +57,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-/*Route::get('/', 'PagesController@getHome');
+Route::get('/', 'PagesController@getHome');
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');
-*/
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

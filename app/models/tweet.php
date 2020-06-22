@@ -77,7 +77,9 @@ public function favorites()
  public function comments()
 {
         return $this->hasMany(Comment::class);
+
 }
+
 
     // 一覧画面
     public function getTimeLines(Int $user_id, Array $follow_ids)
@@ -102,19 +104,23 @@ public function favorites()
             return;
         }
 
-        public function tweetUpdate(Int $tweet_id, Array $data)
+        public function getUserTimeLine(Int $user_id)
         {
-            $this->id = $tweet_id;
-            $this->text = $data['text'];
-            $this->update();
+        return $this->where('id', $user_id)->orderBy('created_at', 'DESC')->paginate(50);
+        }
     
-            return;
+        public function getTweetCount(Int $user_id)
+        {
+        return $this->where('user_id', $user_id)->count();
         }
 
-        public function tweetDestroy(Int $user_id, Int $tweet_id)
+        public function getEditTweet(int $user_id ,int $tweet_id)
         {
-            return $this->where('user_id', $user_id)->where('id', $tweet_id)->delete();
+        return $this->where('user_id', $user_id)->where('id', $tweet_id)->first();
         }
+
+        
+
 
         
 }
